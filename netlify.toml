@@ -1,0 +1,9 @@
+[build]
+  command = "pwd; find; yarn netlify-build"
+  functions = "functions"
+  publish = "html"
+
+
+[[redirects]]
+  from = "/validate-captcha"
+  to = "/.netlify/functions/validate-captcha"

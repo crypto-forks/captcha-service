@@ -1,0 +1,7 @@
+.netlify
+node_modules
+build
+/yarn-error.log
+/.secret
+functions/validate-captcha/dist/
+.idea/

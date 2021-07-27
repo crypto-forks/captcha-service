@@ -1,0 +1,13 @@
+{
+  "name": "validate-captcha",
+  "version": "1.1.0",
+  "main": "validateCaptcha.ts",
+  "license": "MIT",
+  "dependencies": {
+    "@netlify/functions": "^0.7.2",
+    "@opengsn/paymasters": "/Users/dror/IdeaProjects/depl/gsn/packages/paymasters/opengsn-paymasters-v2.2.2-a.tgz",
+    "@types/node": "^16.4.3",
+    "ethereumjs-util": "^7.0.1",
+    "node-fetch": "^2.6.0"
+  }
+}

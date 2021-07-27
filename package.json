@@ -1,0 +1,26 @@
+{
+  "name": "@opengsn/captcha-service",
+  "description": "A sample VerifyingPaymaster service to validate captcha",
+  "version": "0.0.10",
+  "main": "src/CaptchaApproval.js",
+  "author": "dror@opengsn.org",
+  "repository": {
+    "url": "https://github.com/opengsn/captcha-service",
+    "type": "git"
+  },
+  "license": "MIT",
+  "scripts": {
+    "netlify-build": "cd functions/validate-captcha && yarn install && tsc"
+  },
+  "files": [
+  ],
+  "dependencies": {
+    "@types/node": "^16.4.3",
+    "axios": "^0.19.2"
+  },
+  "devDependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "typescript": "^4.3.5"
+  }
+}
