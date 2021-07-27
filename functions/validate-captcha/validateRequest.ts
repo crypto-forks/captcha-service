@@ -1,5 +1,5 @@
 import {Event} from "@netlify/functions/src/function/event";
-import {signRelayRequest} from "@opengsn/paymasters";
+import {signRelayRequest} from "@opengsn/paymasters/dist/src/VerifyingPaymasterUtils";
 import {privateToAddress} from "ethereumjs-util";
 
 const recaptchaApiSiteVerify = "https://www.google.com/recaptcha/api/siteverify"
