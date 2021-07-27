@@ -1,5 +1,5 @@
 [build]
-  command = "pwd; find; yarn netlify-build"
+  command = "yarn netlify-build"
   functions = "functions"
   publish = "html"
 
