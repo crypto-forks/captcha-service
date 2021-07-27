@@ -18,7 +18,7 @@
       request: {},
       requestData: {}
     }
-    const response = await fetch('/captcha-service', {
+    const response = await fetch('/validate-captcha', {
       mode: 'no-cors',
       method: 'POST',
       body: {
@@ -33,6 +33,8 @@
 
 </script>
 <body>
+Netlify Status: <img src="https://api.netlify.com/api/v1/badges/2109e0f2-764d-4383-965e-e78b43111486/deploy-status">
+
 <div class="g-recaptcha" data-sitekey="6LdZ4MIbAAAAAPliyu1Y_gVA0MCiDol6mY6cnn9Y"></div>
 <br/>
 <input type="submit" value="check" onclick="checkfunc()">

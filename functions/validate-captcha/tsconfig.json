@@ -19,6 +19,8 @@
     "isolatedModules": true,
     "outDir": "dist",
     "declaration": true,
+    "sourceMap": true,
+    "inlineSourceMap": false,
     "declarationMap": true,
     "jsx": "react-jsx"
   }

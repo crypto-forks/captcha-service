@@ -7,3 +7,4 @@
 [[redirects]]
   from = "/validate-captcha"
   to = "/.netlify/functions/validate-captcha"
+  status = 200
