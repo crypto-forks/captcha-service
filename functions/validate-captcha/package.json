@@ -4,7 +4,7 @@
   "license": "MIT",
   "dependencies": {
     "@netlify/functions": "^0.7.2",
-    "@opengsn/paymasters": "../../opengsn-paymasters-v2.2.2.tgz",
+    "@opengsn/paymasters": "../../opengsn-paymasters-v2.2.3-rc.1.tgz",
     "@types/node": "^16.4.3",
     "axios": "^0.21.1",
     "ethereumjs-util": "^7.0.1",
