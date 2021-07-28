@@ -244,9 +244,9 @@
   dependencies:
     "@openzeppelin/contracts" "^3.4.0-solc-0.7"
 
-"@opengsn/paymasters@file:../../../depl/gsn/packages/paymasters/opengsn-paymasters-v2.2.2-a.tgz":
-  version "2.2.2-a"
-  resolved "file:../../../depl/gsn/packages/paymasters/opengsn-paymasters-v2.2.2-a.tgz#aa157be2c490fb176ee98650191e3245e383e706"
+"@opengsn/paymasters@../../opengsn-paymasters-v2.2.2.tgz":
+  version "2.2.2"
+  resolved "../../opengsn-paymasters-v2.2.2.tgz#e16bb4a8984eab3a2542e1a92b543a9892c22562"
   dependencies:
     "@opengsn/common" "^2.2.2"
     "@opengsn/contracts" "^2.2.2"

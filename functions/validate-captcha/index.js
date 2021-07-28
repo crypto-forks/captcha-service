@@ -1,6 +1,6 @@
-const {validateRequest} = require( './dist/validateRequest')
+const {handler} = require( './dist/validate-captcha')
 
-exports.handler = validateRequest
+exports.handler = handler
 // exports.handler = async function(event, context) {
 //   return {
 //     statusCode: 200,

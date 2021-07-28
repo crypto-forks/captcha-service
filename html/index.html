@@ -3,42 +3,78 @@
     <title>reCAPTCHA demo: Simple page</title>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
+
+<body>
+A test for the captcha-service.<br>
+Try to click the button before, after, getting "CAPTCHA" response.
+It will sign the GSN request only with valid captcha
+<p>
+NOTE: go to <a href="https://www.google.com/recaptcha/admin/">Google captcha admin</a> to get your own site key
+
+<p>
 <script>
+
+  let gsnRequest={
+      request: {
+        to: "0x0000000000000000000000000000000000000000",
+        data: "0x12345678",
+        from: "0x0000000000000000000000000000000000000000",
+        nonce: "1",
+        value: "0",
+        gas: "2",
+        validUntil: "0"
+      },
+      relayData: {
+        baseRelayFee: "3",
+        pctRelayFee: "4",
+        gasPrice: "5",
+        relayWorker: "0x0000000000000000000000000000000000000000",
+        forwarder: "0x0000000000000000000000000000000000000000",
+        paymaster: "0x0000000000000000000000000000000000000000",
+        paymasterData: "0x",
+        clientId: "1"
+      }
+    }
+
 
   async function checkfunc() {
     console.log("reCAPTCHA result")
     const resp = grecaptcha.getResponse()
     console.log('resp=', resp)
-    document.getElementById('resp').innerText = resp
 
     //TODO: try to post to captcha service. INCOMPLETE
 
     //this is the GSN request we'll be signing on
-    const request = {
-      request: {},
-      requestData: {}
-    }
     const response = await fetch('/validate-captcha', {
-      mode: 'no-cors',
       method: 'POST',
-      body: {
-        gresponse: resp,
-        userdata: request
-      }
+      headers: {
+        'content-type': 'application/json'
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: JSON.stringify({
+        gresponse: resp || 'no-input',
+        userdata: gsnRequest
+      })
     })
     console.log('resp.status', response)
-    const text = await response.text()
+    let text = await response.text()
+    try {
+      text = JSON.stringify(JSON.parse(text),null, '  ')
+    }catch (e){
+      console.log('failed to parse as json',e)
+    }
     console.log('resp.text=', text)
+    document.getElementById('resp').innerHTML = text.replace('\n', '<br>')
   }
 
 </script>
-<body>
-Netlify Status: <img src="https://api.netlify.com/api/v1/badges/2109e0f2-764d-4383-965e-e78b43111486/deploy-status">
 
 <div class="g-recaptcha" data-sitekey="6LdZ4MIbAAAAAPliyu1Y_gVA0MCiDol6mY6cnn9Y"></div>
 <br/>
 <input type="submit" value="check" onclick="checkfunc()">
 
+<pre>
 <div id=resp></div>
+</pre>
 </body>
 </html>
