@@ -14,14 +14,14 @@ const handler: Handler = async (event, context) => {
     //config file created by create-config.js during site build
     // const config = require('./config.json')
 
-    console.log('=== parsing request')
+    console.log('=== parsing request', event)
     let res = await validateRequest(event);
     console.log('=== return success')
     return {statusCode: 200, headers, body: JSON.stringify(res)}
   } catch (e) {
-    console.log('=== failure')
+    console.log('=== failure', e)
     return {
-      statusCode: 400, headers, body: JSON.stringify({
+      statusCode: 200, headers, body: JSON.stringify({
         success: false,
         input: event,
         error: e?.toString(),
