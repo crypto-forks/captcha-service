@@ -1,4 +1,3 @@
-// const {validateRequest} = require('./validateRequest')
 import {Handler} from "@netlify/functions";
 import {validateRequest} from "./validateRequest";
 
@@ -9,17 +8,19 @@ const headers = {
 };
 
 const handler: Handler = async (event, context) => {
-
+  if (event.httpMethod == 'OPTIONS') {
+    return {
+      statusCode: 200, // <-- Must be 200 otherwise pre-flight call fails
+      headers,
+      body: 'preflight'
+    }
+  }
   try {
-    //config file created by create-config.js during site build
-    // const config = require('./config.json')
 
-    console.log('=== parsing request', event)
     let res = await validateRequest(event);
-    console.log('=== return success')
     return {statusCode: 200, headers, body: JSON.stringify(res)}
   } catch (e) {
-    console.log('=== failure', e)
+    console.log('=== failure', e, 'request=', event.body)
     return {
       statusCode: 200, headers, body: JSON.stringify({
         success: false,
@@ -29,16 +30,6 @@ const handler: Handler = async (event, context) => {
       })
     }
   }
-  /*
-  {
-      "path": "Path parameter",
-      "httpMethod": "Incoming request's method name"
-      "headers": {Incoming request headers}
-      "queryStringParameters": {query string parameters }
-      "body": "A JSON string of the request payload."
-      "isBase64Encoded": "A boolean flag to indicate if the applicable request payload is Base64-encode"
-  }
-  */
 }
 
 export {handler}

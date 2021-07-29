@@ -2,6 +2,7 @@
   "name": "validate-captcha",
   "version": "1.1.0",
   "license": "MIT",
+  "main": "dist/validate-captcha.js",
   "dependencies": {
     "@babel/core": "^7.14.8",
     "@netlify/functions": "^0.7.2",
