@@ -45,6 +45,10 @@ export async function validateRequest(event: Event) {
     gdata = await res.data
     if (!gdata.success) {
       // site-verify "error-codes": probably "invalid-input-response" or "timeout-or-duplicate"
+      if ( gdata['error-codes']!=null ) {
+        gdata.error = gdata['error-codes'].join()
+        delete gdata['error-codes']
+      }
       return gdata
     }
   } else {

@@ -7,6 +7,14 @@ const headers = {
   'Access-Control-Allow-Methods': 'GET, POST'
 };
 
+function isDebug(body: any): boolean {
+  try {
+    return JSON.parse(body).debug != null
+  } catch (e) {
+    return false
+  }
+}
+
 const handler: Handler = async (event, context) => {
   if (event.httpMethod == 'OPTIONS') {
     return {
@@ -21,13 +29,19 @@ const handler: Handler = async (event, context) => {
     return {statusCode: 200, headers, body: JSON.stringify(res)}
   } catch (e) {
     console.log('=== failure', e, 'request=', event.body)
-    return {
-      statusCode: 200, headers, body: JSON.stringify({
-        success: false,
+    let ret: any = {
+      success: false,
+      error: e?.toString(),
+    }
+    if (isDebug(event.body)) {
+      ret = {
+        ...ret,
         input: event,
-        error: e?.toString(),
         stack: e.stack?.split('\n')
-      })
+      }
+    }
+    return {
+      statusCode: 200, headers, body: JSON.stringify(ret)
     }
   }
 }
