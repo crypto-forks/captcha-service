@@ -10,7 +10,6 @@ export async function validateRequest(event: Event) {
   const recaptcha_secret_key = process.env.RECAPTCHA_SECRET_KEY
 
   const debug_skip_google = process.env.DEBUG_SKIP_GOOGLE
-  // const {PRIVATE_KEY: privkey, RECAPTCHA_SECRET_KEY: recaptcha_secret_key, debug_skip_google} = process.env
 
   if (privkey == null)
     throw 'FATAL: must set env PRIVATE_KEY'
@@ -54,7 +53,6 @@ export async function validateRequest(event: Event) {
   } else {
     gdata = {success: true, debug: true}
   }
-
 
   return {
     approvalData: signRelayRequest(userdata, private_key),

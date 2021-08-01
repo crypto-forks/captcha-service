@@ -47,22 +47,25 @@ NOTE: go to <a href="https://www.google.com/recaptcha/admin/">Google captcha adm
     //this is the GSN request we'll be signing on
     const response = await fetch('/validate-captcha', {
       method: 'POST',
-      headers: {
-        'content-type': 'application/json'
-        // 'Content-Type': 'application/x-www-form-urlencoded',
-      },
       body: JSON.stringify({
         gresponse: resp || 'no-input',
         userdata: gsnRequest
       })
     })
     console.log('resp.status', response)
-    let text = await response.text()
+    let text
     try {
-      text = JSON.stringify(JSON.parse(text),null, '  ')
-    }catch (e){
-      console.log('failed to parse as json',e)
+        let json = await response.json()
+        text = JSON.stringify(json,null,'  ')
+    } catch(e) {
+      console.log('resp=', response)
+      text = await response.text()
     }
+    // try {
+    //   text = JSON.stringify(JSON.parse(text),null, '  ')
+    // }catch (e){
+    //   console.log('failed to parse as json',e)
+    // }
     console.log('resp.text=', text)
     document.getElementById('resp').innerHTML = text.replace('\n', '<br>')
   }

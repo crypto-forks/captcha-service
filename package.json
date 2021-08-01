@@ -10,7 +10,8 @@
   },
   "license": "MIT",
   "scripts": {
-    "netlify-build": "cd functions/validate-captcha && yarn install && tsc"
+    "netlify-build": "cd functions/validate-captcha && yarn install && tsc",
+    "dev": "yarn netlify-build && netlify dev"
   },
   "files": [
   ],
